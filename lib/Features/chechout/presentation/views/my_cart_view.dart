@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:payment_proj/Features/chechout/presentation/views/payment_details_view.dart';
 import 'package:payment_proj/Features/chechout/presentation/widgets/order_info_item.dart';
 import 'package:payment_proj/Features/chechout/presentation/widgets/payment_methods_listview.dart';
 import 'package:payment_proj/core/utils/styles.dart';
