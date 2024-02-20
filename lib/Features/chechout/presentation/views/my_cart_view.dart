@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:payment_proj/Features/chechout/data/repos/checkout_repo_impl.dart';
+import 'package:payment_proj/Features/chechout/presentation/manager/cubit/payment_cubit.dart';
 import 'package:payment_proj/Features/chechout/presentation/widgets/order_info_item.dart';
-import 'package:payment_proj/Features/chechout/presentation/widgets/payment_methods_listview.dart';
+import 'package:payment_proj/Features/chechout/presentation/widgets/payment_bottom_sheet.dart';
 import 'package:payment_proj/core/utils/styles.dart';
 import 'package:payment_proj/core/widgets/custom_appbar.dart';
 import 'package:payment_proj/core/widgets/custom_button.dart';
@@ -54,7 +57,10 @@ class MyCartView extends StatelessWidget {
               showModalBottomSheet(
                   context: context,
                   builder: (context) {
-                    return const PaymentBottomSheet();
+                    return BlocProvider(
+                      create: (context) => PaymentCubit(CheckoutRepoImpl()),
+                      child: const PaymentBottomSheet(),
+                    );
                   });
             },
           ),
@@ -62,30 +68,6 @@ class MyCartView extends StatelessWidget {
             height: 12,
           )
         ]),
-      ),
-    );
-  }
-}
-
-class PaymentBottomSheet extends StatelessWidget {
-  const PaymentBottomSheet({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          SizedBox(
-            height: 16,
-          ),
-          PaymentMethodsListView(),
-          SizedBox(
-            height: 32,
-          ),
-          CustomButton(text: "Pay")
-        ],
       ),
     );
   }

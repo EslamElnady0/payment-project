@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:payment_proj/Features/chechout/presentation/views/my_cart_view.dart';
+import 'package:payment_proj/core/utils/api_keys.dart';
 
 main() {
-  runApp(PaymentGateways());
+  Stripe.publishableKey = ApiKeys.publishablekey;
+  runApp(const PaymentGateways());
 }
 
 class PaymentGateways extends StatelessWidget {
@@ -14,9 +17,9 @@ class PaymentGateways extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
           appBarTheme:
-              AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark)),
+              const AppBarTheme(systemOverlayStyle: SystemUiOverlayStyle.dark)),
       debugShowCheckedModeBanner: false,
-      home: MyCartView(),
+      home: const MyCartView(),
     );
   }
 }
